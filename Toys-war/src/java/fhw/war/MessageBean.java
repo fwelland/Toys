@@ -1,9 +1,9 @@
 package fhw.war;
 
-import fhw.iface.ITestService;
-import javax.ejb.EJB;
+import fhw.war.dal.TestServiceDAL;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 
 
 @Named(value = "messageBean")
@@ -12,8 +12,9 @@ public class MessageBean
 {
     private String message;
     
-    @EJB
-    private transient ITestService testService; 
+    @Inject 
+    private transient TestServiceDAL testServiceDAL; 
+
     
     public MessageBean()
     {
@@ -32,7 +33,6 @@ public class MessageBean
     
     public void processGoButton()
     {
-        String newMessage = testService.makeMessage(message); 
-        message = newMessage; 
+        message = testServiceDAL.makeMessage(message); 
     }
 }
