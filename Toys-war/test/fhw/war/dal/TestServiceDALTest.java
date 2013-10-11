@@ -1,50 +1,37 @@
 package fhw.war.dal;
 
+import fhw.iface.ITestService;
+import javax.inject.Inject;
+import org.jglue.cdiunit.ActivatedAlternatives;
+import org.jglue.cdiunit.CdiRunner;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.runner.RunWith;
 
 
+@RunWith(CdiRunner.class)
+@ActivatedAlternatives({RemoteServiceProducer.class})
 public class TestServiceDALTest
 {
+    
+    @Inject
+    private ITestService testService; 
     
     public TestServiceDALTest()
     {
     }
     
-    @BeforeClass
-    public static void setUpClass()
-    {
-    }
     
-    @AfterClass
-    public static void tearDownClass()
-    {
-    }
-    
-    @Before
-    public void setUp()
-    {
-    }
-    
-    @After
-    public void tearDown()
-    {
-    }
-
     @Test
     public void testMakeMessage()
     {
         System.out.println("makeMessage");
-        String inMess = "";
-        TestServiceDAL instance = new TestServiceDAL();
-        String expResult = "";
-        String result = instance.makeMessage(inMess);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String inMess = "UNIT Test Me!";
+        String result = testService.makeMessage(inMess);
+        System.out.println(result); 
     }
 }

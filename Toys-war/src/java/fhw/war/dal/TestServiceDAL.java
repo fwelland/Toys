@@ -1,8 +1,8 @@
 package fhw.war.dal;
 
 import fhw.iface.ITestService;
-import javax.ejb.EJB;
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 @Named
@@ -10,7 +10,7 @@ import javax.inject.Named;
 public class TestServiceDAL 
 {
     
-    @EJB
+    @Inject
     private transient ITestService testService;     
 
     public String makeMessage(String inMess)
